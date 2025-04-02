@@ -13,6 +13,7 @@
         </tr>
         </thead>
         <tbody id="board-box">
+
         </tbody>
     </table>
 
@@ -20,7 +21,7 @@
 
 <script>
 
-    // 책임 : 컴포넌트 하나 만드는 거 (컴포넌트 생성)
+    // 책임 : 컴퍼넌트 생성
     function makeBoard(board) {
         let tr = document.createElement("tr");
         tr.innerHTML = `
@@ -47,9 +48,8 @@
         let responseBody = await response.json();
 
         let boardList = responseBody.body;
-        // console.log(boardList);
+        //console.log(boardList);
 
-        // for문 쓸 때 이제 forEach 쓰기
         let tbody = document.querySelector("#board-box");
         boardList.forEach((board) => {
             tbody.append(makeBoard(board));

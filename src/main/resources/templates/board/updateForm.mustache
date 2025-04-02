@@ -5,7 +5,7 @@
         <div class="card-header"><b>익명 글수정 화면입니다</b></div>
         <div class="card-body">
             <form action="#">
-                <input type="hidden" id="boardId" value="{{boardId}}">
+                <input type="hidden" id="boardId" value="{{boardId}}"> <!-- boarId 를 가져와서 뿌림 -->
                 <div class="mb-3">
                     <input type="text" class="form-control" placeholder="Enter author" id="author">
                 </div>
@@ -23,14 +23,14 @@
 
 <script>
     let boardId = document.querySelector("#boardId").value;
-    // let boardId2 = getCookie("boardId");
-
+    let boardId2 = getCookie("boardId");
 
     // 책임 : 통신
     async function init() {
-        let response = await fetch("/api/boards/4" + boardId);
+        let response = await fetch("/api/boards/" + boardId);
         let responseBody = await response.json();
         console.log(responseBody);
+
         document.querySelector("#author").value = responseBody.body.author;
         document.querySelector("#title").value = responseBody.body.title;
         document.querySelector("#content").value = responseBody.body.content;
@@ -38,15 +38,16 @@
 
     init();
 
-    // function getCookie(key) {
-    //     const cookies = document.cookie.split('; ');
-    //     for (let cookie of cookies) {
-    //         const [k, v] = cookie.split('=');
-    //         if (k === key) {
-    //             return v;
-    //         }
-    //     }
-    //     return null; // 해당 키가 없으면 null 반환
-    // }
+    function getCookie(key) {
+        const cookies = document.cookie.split('; ');
+        for (let cookie of cookies) {
+            const [k, v] = cookie.split('=');
+            if (k === key) {
+                return v;
+            }
+        }
+        return null; // 해당 키가 없으면 null 반환
+    }
 </script>
+
 {{> layout/footer}}

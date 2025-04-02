@@ -25,7 +25,7 @@ public class BoardController {
     @GetMapping("/board/{id}/updateForm")
     public String updateForm(@PathVariable int id, HttpServletRequest request, HttpServletResponse response) {
         Cookie cookie = new Cookie("boardId", id + ""); // Cookie 임포트 할 때는 자카르타임!
-//        cookie.setHttpOnly(true);
+        //cookie.setHttpOnly(true);
         response.addCookie(cookie);
         // 응답의 헤더 -> Set-Cookie : boardId = 5, Set Cookie = 모든 쿠키를 덮어 씌운다는 의미이다. Add Cookie는 추가한다는 의미
 
