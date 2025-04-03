@@ -49,8 +49,7 @@
         return null; // 해당 키가 없으면 null 반환
     }
 
-    async function updateBoard(e) {
-        e.preventDefault();
+    async function updateBoard() {
         // 1. id 값 찾아서 requestBody 오브젝트에 넣기
         let requestBody = {
             author: document.querySelector("#author").value,
@@ -58,9 +57,9 @@
             content: document.querySelector("#content").value
         };
 
-        // 2. fetch post 요청하기
-        let response = await fetch("/api/boards" + boardId, {
-            method: "post",
+        // 2. fetch put 요청하기
+        let response = await fetch("/api/boards/" + boardId, {
+            method: "put",
             body: JSON.stringify(requestBody),
             headers: {"Content-Type": "application/json"}
         });
